@@ -23,6 +23,20 @@ console.log(solve(boardString));
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
+for (let i = 0; i < board.length; i += 1) { // горизонталь
+  if (board[i].reduce((acc, el) => acc + el, 0) !== 45) return false;
+}
+for (let i = 0; i < board.length; i += 1) {  // вертикаль
+  let colomn = [];
+  for (let j = 0; j < board.length; j += 1) {
+    colomn.push(board[i][j])
+  }
+  if (column.reduce((acc, el) => acc + el,0) !== 45) return false;
+}
+return true;
+
+// 405 сумма всех эл-ов
+
   // проверка по сумме массиву, горизонтали и вертикали
 }
 
