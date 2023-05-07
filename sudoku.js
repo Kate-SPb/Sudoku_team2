@@ -5,10 +5,10 @@
  */
 
 let boardString =
-  '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
 function solve(boardString) {
   let arr = [];
-  const newArr = boardString.split('');
+  const newArr = boardString.split("");
   for (let i = 0; i < newArr.length / 9; i += 1) {
     arr[i] = newArr.slice(i * 9, i * 9 + 9);
     // console.log(newArr);
@@ -23,19 +23,21 @@ console.log(solve(boardString));
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-for (let i = 0; i < board.length; i += 1) { // горизонталь
-  if (board[i].reduce((acc, el) => acc + el, 0) !== 45) return false;
-}
-for (let i = 0; i < board.length; i += 1) {  // вертикаль
-  let colomn = [];
-  for (let j = 0; j < board.length; j += 1) {
-    colomn.push(board[i][j])
+  for (let i = 0; i < board.length; i += 1) {
+    // горизонталь
+    if (board[i].reduce((acc, el) => acc + el, 0) !== 45) return false;
   }
-  if (column.reduce((acc, el) => acc + el,0) !== 45) return false;
-}
-return true;
+  for (let i = 0; i < board.length; i += 1) {
+    // вертикаль
+    let colomn = [];
+    for (let j = 0; j < board.length; j += 1) {
+      colomn.push(board[i][j]);
+    }
+    if (column.reduce((acc, el) => acc + el, 0) !== 45) return false;
+  }
+  return true;
 
-// 405 сумма всех эл-ов
+  // 405 сумма всех эл-ов
 
   // проверка по сумме массиву, горизонтали и вертикали
 }
@@ -47,6 +49,38 @@ return true;
  */
 function prettyBoard(board) {
   // принимает массив массивов
+  board.forEach((el) => {
+    el.splice(0, 0, "|");
+    el.splice(10, 0, "|");
+    el.splice(4, 0, "|");
+    el.splice(8, 0, "|");
+    //  console.log(el);
+  });
+  // console.log(board);
+  for (let k = 2; k < board.length - 3; k += 3) {
+    board[k].push(
+      "\n",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—"
+    );
+    // console.log(board);
+  }
+  board.unshift([" ", "—", "—", "—", "—", "—", "—", "—", "—", "—", "—", "—"]);
+  board.push([" ", "—", "—", "—", "—", "—", "—", "—", "—", "—", "—", "—"]);
+  // let tabl = str.map((el) => el.join(" "));
+  const tabl = board.map((el) => el.join(" "));
+  // console.log(tabl.join("\n"));
+  return tabl.join("\n");
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
